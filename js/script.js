@@ -19,10 +19,16 @@ document.addEventListener("keyup",(event)=>{
 })
 
 $(document).on("click",".formation",(event)=>{
+    console.log(event.target)
     if (event.target.className == 'edit'){
-        return alert('s')    
+        return    
         }
-        $(event.target).parent().next().toggleClass("active")
+    else if(event.target.className == 'onoff toggle-on'|| event.target.className == 'onoff toggle-off'){
+       return
+            
+    }
+
+    $(event.target).parent().next().toggleClass("active")
     
 
 })
@@ -46,7 +52,7 @@ $(document).on("click","#btn",(event)=>{
 function addTodo(){
         var textval = $("#todo").val()
         $("#todos-list").append(`<li class='formation'>
-        <div class="toggle-on"></div>
+        <div class="onoff toggle-on"></div>
         <p> ${textval} </p>
         <button class="edit" ></button>
         <button class="delete" ></button>
@@ -73,3 +79,25 @@ function addTodo(){
 
               
 }
+
+
+$(document).ready(()=>{
+
+    $("#todos-list").on('click', '.delete', function (e) {
+        $(e.target).parent().next().remove();
+        $(this).closest('li').remove();
+        
+       });
+    
+})
+
+$(document).ready(()=>{
+
+    $("#todos-list").on('click', '.onoff', function () {
+        $(this).toggleClass('toggle-on');
+        $(this).toggleClass('toggle-off');
+       });
+    $(document).on('click','.check',function(e){
+           console.log($(this).parent())
+       })
+})
