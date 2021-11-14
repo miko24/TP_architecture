@@ -71,7 +71,7 @@ ul li{
     margin-top: 4px;
 }
 
-li p{
+li p,.change{
     float: left;
     width: 95%;
     vertical-align: middle;
@@ -112,4 +112,13 @@ li p{
     background-color: #5aa6e9;
     border: none;
     color: #ffffff;
+}
+.change{
+    color: black;
+    margin-right: auto;
+    background-color:#59a6ea ;
+    border: none;
+}
+.change::placeholder{
+    color: rgb(29, 230, 29);
 }

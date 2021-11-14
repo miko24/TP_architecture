@@ -6,7 +6,7 @@ $("#add_btn").on("click",()=>{
     addTodo()
     $("#todo").val("")
 })
-document.addEventListener("keyup",(event)=>{
+$("#todo").on("keyup",(event)=>{
     if(event.keyCode === 13 && $("#todo").val() !== ""){
         addTodo()
         return $("#todo").val("")
@@ -18,18 +18,37 @@ document.addEventListener("keyup",(event)=>{
     
 })
 
+
 $(document).on("click",".formation",(event)=>{
     console.log(event.target)
     if (event.target.className == 'edit'){
+        $(event.target).prev().replaceWith(`<input class='change' type='textarea' placeholder="Edit Here">`)
         return    
         }
+    else if(event.target.className == 'change'){
+  
+        
+        return
+    }
     else if(event.target.className == 'onoff toggle-on'|| event.target.className == 'onoff toggle-off'){
        return
             
     }
 
+
     $(event.target).parent().next().toggleClass("active")
     
+
+})
+$(document).on('keyup','.change', (event)=>{
+    var data = $(event.target).val()
+    if(event.keyCode === 13 && data !== ""){
+        $(event.target).replaceWith(`<p> ${data} </p>`)
+        return
+    }
+    else if(event.keyCode === 13 && data === ""){
+        alert("il est obligatoire de remplir la zone de texte")
+    }
 
 })
 
@@ -101,3 +120,5 @@ $(document).ready(()=>{
            console.log($(this).parent())
        })
 })
+
+
