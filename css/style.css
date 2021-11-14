@@ -1,0 +1,115 @@
+
+*{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.main{
+    padding: 15px;
+    margin: 50px auto;
+    background-color: #59a6ea;
+    display: flex;
+    width: 80%;
+}
+
+.todos{
+    width: 80%;
+    margin:auto;
+}
+
+.main input[type="text"]{
+    float: left;
+    height: 40px;
+    width: 75%;
+    margin: auto;
+    padding-left: 15px;
+    border: none;
+}
+.main input[type="button"]{
+    height: 40px;
+    width: 25%;
+    border: none;
+    background-color: #3e8dc5;
+    color: #ffffff;
+}
+input:focus, button:focus {
+    outline: none;
+}
+
+/* list  */
+ul {
+    list-style-type: none;
+}
+ul li{
+    height: 40px;
+    margin: 15px 10px;
+    background-color: #59a6ea;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.details{
+    display: none;
+    color: white;
+    padding: 10px 25px;
+    background-color: #95c1e8;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.details.active{
+    display: block;
+}
+
+.details div {
+    display: inline-flex;
+}
+
+.details div input {
+    margin-left: 10px;
+    margin-left: 10px;
+    height: 30px;
+    margin-top: 4px;
+}
+
+li p{
+    float: left;
+    width: 95%;
+    vertical-align: middle;
+    padding: 10px 20px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.toggle-on {
+    background-image: url('toggle-on.svg');
+    width: 15px;
+    height: 13px;
+    margin-left: 15px;
+}
+
+.toggle-off {
+    background-image: url('toggle-off.svg');
+    width: 15px;
+    height: 13px;
+    margin-left: 15px;
+}
+
+.delete{
+    background-image: url('trash-can.svg');
+    height: 15px;
+    width: 13px;
+    margin-right: 15px;
+    background-color: #5aa6e9;
+    border: none;
+    color: #ffffff;
+}
+
+.edit{
+    background-image: url('edit.svg');
+    height: 12px;
+    width: 13px;
+    margin-right: 15px;
+    background-color: #5aa6e9;
+    border: none;
+    color: #ffffff;
+}
