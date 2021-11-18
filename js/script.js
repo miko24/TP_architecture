@@ -5,7 +5,7 @@ function addTodo(){
         var textval = document.getElementById("todo").value
         list = document.createElement("li")
         list.className = 'formation'
-        list.innerHTML = '<div class="onoff toggle-on" onclick="tog(this.id)" id="tog'+i+'" ></div> <p> '+textval+'</p><button class="edit" ></button><button class="delete" ></button>'
+        list.innerHTML = '<div class="onoff toggle-on"  id="tog'+i+'" ></div> <p> '+textval+'</p><button class="edit" ></button><button class="delete" ></button>'
         div = document.createElement("div")
         div.className = 'details active'
         div.innerHTML =  ` <div>
@@ -80,8 +80,12 @@ document.getElementsByClassName("formation")[i].addEventListener("click",(event)
         addingeventchange(event.target)
         return    
         }
+    else if(event.target.className === 'onoff toggle-off' || event.target.className === 'onoff toggle-on' ){
+        tog(event.target.id)
+        return
+    }
     //on fait en sorte que si on click sur les elements de class change , onoff toggle-on , onoff toggle-off n appelent pas la methode toggleClass implemente ci-dessous
-    else if(event.target.className == 'change'|| event.target.className == 'onoff toggle-on'|| event.target.className == 'onoff toggle-off'){ 
+    else if(event.target.className == 'change'){ 
             return
         }
     event.target.closest("li").nextElementSibling.classList.toggle("active")
@@ -148,27 +152,22 @@ document.getElementsByClassName("change")[0].addEventListener('keyup',(event)=>{
 
 //la fonction tog sera responsable de changer la partie checkbox en verifiant si le toggle est en toggle-on ou en toggle-off
 function tog(id){
-
-    var nb=id.replace('tog','').trim();
-    
-    if(document.getElementById(id).className === "toggle-off"){
-      
-        document.getElementById('check'+nb).getAttribute('checked') = "true";}
-    else if (document.getElementById(id).className === "toggle-on"){
-           document.getElementById('check' + nb).getAttribute('checked') = "false";
+    var nb=id.replace('tog','').trim()
+    if(document.getElementById(id).className === "onoff toggle-off"){
+        document.getElementById('check'+nb).checked = true;}
+    else if (document.getElementById(id).className === "onoff toggle-on"){
+        document.getElementById('check' + nb).checked = false;
     }
 } 
 //la fonction check sera responsable de changer la pratie toggle en verifiant si le checkbox est checked ou non
 function check(id){
-    console.log(id)
     var nb=id.replace('check','').trim();
-    
-    if (document.getElementById('checked'+nb).getAttribute('checked') === "true")
-           document.getElementById("tog"+nb).classList.toggle(" toggle-off")
-        ;
-    else if (document.getElementById('checked'+nb).getAttribute('checked') === "false")
-           document.getElementById("tog"+nb).classList.toggle(" toggle-on")
-        ;
+    if (document.getElementById('check'+nb).checked === true){
+           document.getElementById("tog"+nb).classList.toggle("toggle-off")
+    }
+    else if (document.getElementById('check'+nb).checked === false){
+            document.getElementById("tog"+nb).classList.toggle("toggle-on")
+    }
 
 }
 
