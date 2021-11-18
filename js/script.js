@@ -21,7 +21,7 @@ function addTodo(){
                 </div>
                 <br>
                 <div>
-                    <p>Terminée ou en cours</p>  <input class="check" onclick="check(this.id)" type="checkbox" id="check`+i+`">
+                    <p>Terminée ou en cours</p>  <input class="check" type="checkbox" id="check`+i+`">
                 </div>
                 <br> <br>
                 <input id="btn" type="button" value="Valider les modifications">
@@ -77,7 +77,15 @@ document.getElementsByClassName("formation")[i].addEventListener("click",(event)
         input.setAttributeNode(placeholder)
         li = event.target.closest("li")
         li.replaceChild(input , li.children[1])
-        addingeventchange(event.target)
+        button = document.getElementsByClassName("details active")[i].children[9]
+        button.closest("div").children[0].children[1].style.display = 'block'
+        button.closest("div").children[2].children[1].style.display = 'block'
+        button.closest("div").children[4].children[1].style.display = 'block'
+        console.log(button.closest("div").children[6].children[1])
+        button.closest("div").children[6].children[1].disabled = false
+        button.style.display = 'block'
+
+        addingeventchange()
         return    
         }
     else if(event.target.className === 'onoff toggle-off' || event.target.className === 'onoff toggle-on' ){
@@ -96,10 +104,21 @@ document.getElementsByClassName("details active")[i].children[9].addEventListene
     var organisme= event.target.closest("div").children[0].children[1]
     var type=  event.target.closest("div").children[2].children[1]
     var date= event.target.closest("div").children[4].children[1]
+    var checkbox = event.target.closest("div").children[6].children[1]
     //on ajoute les valeurs saisies aux labels dans les details de la formation
     event.target.closest("div").children[0].children[0].append(organisme.value)
     event.target.closest("div").children[2].children[0].append(type.value)
     event.target.closest("div").children[4].children[0].append(date.value)
+    checkbox.disabled = true
+    parent = document.getElementsByClassName("formation")[i]
+    data = parent.children[1].value
+    p = document.createElement("p")
+    p.innerHTML = data
+    parent.replaceChild(p , parent.children[1])
+    //on efface les valeurs saisie par l utilisateur
+    organisme.value = ""
+    type.value = ""
+    date.value = ""
     //on cache les elements input et le bouton 
     organisme.style.display = 'none'
     type.style.display = 'none'
@@ -159,15 +178,5 @@ function tog(id){
         document.getElementById('check' + nb).checked = false;
     }
 } 
-//la fonction check sera responsable de changer la pratie toggle en verifiant si le checkbox est checked ou non
-function check(id){
-    var nb=id.replace('check','').trim();
-    if (document.getElementById('check'+nb).checked === true){
-           document.getElementById("tog"+nb).classList.toggle("toggle-off")
-    }
-    else if (document.getElementById('check'+nb).checked === false){
-            document.getElementById("tog"+nb).classList.toggle("toggle-on")
-    }
 
-}
 
