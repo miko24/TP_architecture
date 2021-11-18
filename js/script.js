@@ -115,7 +115,6 @@ document.getElementsByClassName("details active")[i].children[9].addEventListene
     else {
         data = parent.children[1].value
     }
-    console.log(parent.children[1].value)
     p = document.createElement("p")
     p.innerHTML = data
     parent.replaceChild(p , parent.children[1])
