@@ -84,8 +84,6 @@ document.getElementsByClassName("formation")[i].addEventListener("click",(event)
         console.log(button.closest("div").children[6].children[1])
         button.closest("div").children[6].children[1].disabled = false
         button.style.display = 'block'
-
-        addingeventchange()
         return    
         }
     else if(event.target.className === 'onoff toggle-off' || event.target.className === 'onoff toggle-on' ){
@@ -111,7 +109,13 @@ document.getElementsByClassName("details active")[i].children[9].addEventListene
     event.target.closest("div").children[4].children[0].append(date.value)
     checkbox.disabled = true
     parent = document.getElementsByClassName("formation")[i]
-    data = parent.children[1].value
+    if (parent.children[1].value === undefined) {
+        data = parent.children[1].innerHTML
+    }
+    else {
+        data = parent.children[1].value
+    }
+    console.log(parent.children[1].value)
     p = document.createElement("p")
     p.innerHTML = data
     parent.replaceChild(p , parent.children[1])
@@ -139,32 +143,7 @@ document.getElementsByClassName("details active")[i].children[9].addEventListene
         this.classList.toggle('toggle-on')
         this.classList.toggle('toggle-off')
        });
-}
-//on ajoute un evenment de type keyup a l'element input invoque par la partie edit
-function addingeventchange(){
-document.getElementsByClassName("change")[0].addEventListener('keyup',(event)=>{
-    //on declare une variable ayant la valeur saisie par l'utilisateur
-    var data = event.target.value
-    //on remplace l'element input par un paragraphe representant le nouveau titre de la formation apres que  l'utilisateur click sur le bouton entrer 
-    if(event.keyCode === 13 && data !== ""){
-        p = document.createElement("p")
-        p.innerHTML = data
-        li = event.target.closest("li")
-        li.replaceChild(p , li.children[1])
-        return
-    }
-    //on renvoie un message d erreur si l'utilisateur ne saisie aucune valeur 
-    else if(event.keyCode === 13 && data === ""){
-        alert("il est obligatoire de remplir la zone de texte")
-    }
-
-})
-}
-
-
-
-
-    
+}    
 })
 
 
