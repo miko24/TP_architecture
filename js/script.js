@@ -32,7 +32,7 @@ function addTodo(){
         i++;
               
 }
-
+//on declare une variable afin de pouvoir acceder iterer le tableau contenant les childrens d un element
 var formationindex = 0
 document.addEventListener("DOMContentLoaded",()=>{
     // on ajoute un evenement de type click  pour l'element ayant l'id #add_btn 
@@ -65,7 +65,6 @@ document.getElementById("todo").addEventListener("keyup",(event)=>{
 //on ajoute un evenement de type click list de type formation 
 function  addingevents(i){
 document.getElementsByClassName("formation")[i].addEventListener("click",(event)=>{
-    console.log(document.getElementsByClassName("details")[i].children[9])
     // on remplace le paragraphe representant le titre de la formation en element de type input 
     if (event.target.className == 'edit'){
         input = document.createElement("input")
@@ -85,7 +84,7 @@ document.getElementsByClassName("formation")[i].addEventListener("click",(event)
     else if(event.target.className == 'change'|| event.target.className == 'onoff toggle-on'|| event.target.className == 'onoff toggle-off'){ 
             return
         }
-    $(event.target).parent().next().toggleClass("active")
+    event.target.closest("li").nextElementSibling.classList.toggle("active")
 })
 // on ajoute un evenement de type click au bouton ayant l id #btn qui represente le bouton de modification 
 document.getElementsByClassName("details active")[i].children[9].addEventListener("click",(event)=>{
@@ -123,7 +122,7 @@ function addingeventchange(){
 document.getElementsByClassName("change")[0].addEventListener('keyup',(event)=>{
     //on declare une variable ayant la valeur saisie par l'utilisateur
     var data = event.target.value
-    //on remplace l'element input par un paragraphe representant le nouveau titre de la formation mapres que  l'utilisateur click sur le bouton entrer 
+    //on remplace l'element input par un paragraphe representant le nouveau titre de la formation apres que  l'utilisateur click sur le bouton entrer 
     if(event.keyCode === 13 && data !== ""){
         p = document.createElement("p")
         p.innerHTML = data
@@ -161,7 +160,7 @@ function tog(id){
 } 
 //la fonction check sera responsable de changer la pratie toggle en verifiant si le checkbox est checked ou non
 function check(id){
-
+    console.log(id)
     var nb=id.replace('check','').trim();
     
     if (document.getElementById('checked'+nb).getAttribute('checked') === "true")
