@@ -17,7 +17,7 @@ function addTodo(){
                 </div>
                 <br>
                 <div>
-                    <p class="detail-date"> Date de la fornation :  </p> <input class="date" type="text" placeholder="modifier la date">
+                    <p class="detail-date"> Date de la formation :  </p> <input class="date" type="text" placeholder="modifier la date">
                 </div>
                 <br>
                 <div>
@@ -78,6 +78,9 @@ document.getElementsByClassName("formation")[i].addEventListener("click",(event)
         li = event.target.closest("li")
         li.replaceChild(input , li.children[1])
         button = document.getElementsByClassName("details active")[i].children[9]
+        button.closest("div").children[0].children[0].innerHTML = " Organisme responsable : "
+        button.closest("div").children[2].children[0].innerHTML = "type: "
+        button.closest("div").children[4].children[0].innerHTML = "Date de la formation : "
         button.closest("div").children[0].children[1].style.display = 'block'
         button.closest("div").children[2].children[1].style.display = 'block'
         button.closest("div").children[4].children[1].style.display = 'block'
